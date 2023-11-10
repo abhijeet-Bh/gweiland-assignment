@@ -24,6 +24,9 @@ class CurrencyRepository {
           crypto["name"],
           crypto["quote"]["USD"]["price"],
           crypto["quote"]["USD"]["percent_change_24h"],
+          crypto["quote"]["USD"]["volume_24h"],
+          crypto["quote"]["USD"]["market_cap"],
+          crypto["cmc_rank"],
         );
 
         allCrypto.add(tempCrypto);

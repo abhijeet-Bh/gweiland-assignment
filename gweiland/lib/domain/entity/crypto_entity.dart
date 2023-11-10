@@ -4,6 +4,9 @@ class CryptoEntity {
   String name;
   double price;
   double dayChange;
+  double dayVol;
+  double cmCap;
+  int cmr;
 
   CryptoEntity(
     this.logoImg,
@@ -11,5 +14,8 @@ class CryptoEntity {
     this.name,
     this.price,
     this.dayChange,
+    this.dayVol,
+    this.cmCap,
+    this.cmr,
   );
 }

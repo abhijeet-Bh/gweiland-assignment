@@ -21,6 +21,22 @@ class _HomePageViewState extends State<HomePageView> {
     super.initState();
   }
 
+  SortCriteria sortType = SortCriteria.price;
+
+  _sortData(List<CryptoEntity> list, SortCriteria sortType) {
+    if (sortType == SortCriteria.price) {
+      list.sort((a, b) => a.price.compareTo(b.price));
+    } else if (sortType == SortCriteria.marketCap) {
+      list.sort((a, b) => a.cmCap.compareTo(b.cmCap));
+    } else if (sortType == SortCriteria.rank) {
+      list.sort((a, b) => a.cmr.compareTo(b.cmr));
+    } else if (sortType == SortCriteria.volume) {
+      list.sort((a, b) => a.dayVol.compareTo(b.dayVol));
+    }
+
+    return list;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +64,7 @@ class _HomePageViewState extends State<HomePageView> {
               ),
             );
           } else if (state is HomepageDataLoadedState) {
-            List<CryptoEntity> allCryptos = state.cryptos;
+            List<CryptoEntity> allCryptos = _sortData(state.cryptos, sortType);
             CryptoEntity firstCrypto = allCryptos[0];
             return SafeArea(
               child: Padding(
@@ -419,3 +435,5 @@ class _HomePageViewState extends State<HomePageView> {
     );
   }
 }
+
+enum SortCriteria { rank, marketCap, price, volume }
