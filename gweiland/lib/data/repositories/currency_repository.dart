@@ -12,18 +12,18 @@ class CurrencyRepository {
     try {
       var data = await homePageDataSource.getHomepageData();
       var cryptos = data["data"];
-      for (int i = 0; i < 50; i++) {
+      for (int i = 0; i < 20; i++) {
         var crypto = cryptos[i];
         int id = crypto["id"];
         var cryptoDetail = await cryptoDataSource.getCurrencyData(id);
-        String logo = cryptoDetail["data"]["$id"];
+        String logo = cryptoDetail["data"]["$id"]["logo"];
 
         CryptoEntity tempCrypto = CryptoEntity(
           logo,
           crypto["symbol"],
           crypto["name"],
-          crypto["symbol"]["quote"]["USD"]["price"],
-          crypto["symbol"]["quote"]["USD"]["percent_change_24h"],
+          crypto["quote"]["USD"]["price"],
+          crypto["quote"]["USD"]["percent_change_24h"],
         );
 
         allCrypto.add(tempCrypto);
